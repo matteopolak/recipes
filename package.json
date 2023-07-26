@@ -1,0 +1,26 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@types/node": "^18.17.0",
+    "daisyui": "^3.5.0",
+    "nuxt": "^3.6.5",
+    "nuxt-meilisearch": "^0.1.9"
+  },
+  "dependencies": {
+    "@meilisearch/instant-meilisearch": "^0.13.3",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "@tailwindcss/typography": "^0.5.9",
+    "meilisearch": "^0.33.0",
+    "vue-instantsearch": "^4.10.8"
+  }
+}
