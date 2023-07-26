@@ -72,71 +72,73 @@ function openRecipe(recipe: Recipe) {
 </script>
 
 <template>
-  <dialog id="recipeModal" class="modal">
-    <form method="dialog" class="modal-box prose">
-      <h1 class="font-bold">{{ activeRecipe?.title }}</h1>
+  <client-only>
+    <dialog id="recipeModal" class="modal">
+      <form method="dialog" class="modal-box prose">
+        <h1 class="font-bold">{{ activeRecipe?.title }}</h1>
 
-      <h2>Ingredients</h2>
-      <ul>
-        <li v-for="quantity in activeRecipe?.quantities">
-          {{ quantity }}
-        </li>
-      </ul>
+        <h2>Ingredients</h2>
+        <ul>
+          <li v-for="quantity in activeRecipe?.quantities">
+            {{ quantity }}
+          </li>
+        </ul>
 
-      <h2>Directions</h2>
-      <ol>
-        <li v-for="direction in activeRecipe?.directions">
-          {{ direction }}
-        </li>
-      </ol>
+        <h2>Directions</h2>
+        <ol>
+          <li v-for="direction in activeRecipe?.directions">
+            {{ direction }}
+          </li>
+        </ol>
 
-      <div class="modal-action">
-        <button class="btn btn-error">Close</button>
+        <div class="modal-action">
+          <button class="btn btn-error">Close</button>
+        </div>
+      </form>
+
+      <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+
+    <div class="my-8 flex flex-col items-center gap-8">
+      <div class="grid relative w-full max-w-lg">
+        <svg class="w-8 h-8 absolute left-3 fill-current pointer-events-none place-self-center" viewBox="0 0 24 24">
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+          </path>
+        </svg>
+
+        <input type="text" id="search" placeholder="Search for a recipe, ingredients, or instructions…"
+          class="input input-bordered w-full max-w-lg rounded-full pl-12" v-model="search" />
       </div>
-    </form>
 
-    <form method="dialog" class="modal-backdrop">
-      <button>close</button>
-    </form>
-  </dialog>
+      <div class="flex flex-wrap flex-row gap-3 justify-center" v-if="results.length">
+        <div class="card w-96 bg-base-200 hover:shadow-xl card-bordered transition-all duration-300 cursor-pointer"
+          @click="openRecipe(result)" v-for="result in results">
+          <div class="card-body prose">
+            <h2 class="card-title">
+              {{ result.title }}
+            </h2>
 
-  <div class="my-8 flex flex-col items-center gap-8">
-    <div class="grid relative w-full max-w-lg">
-      <svg class="w-8 h-8 absolute left-3 fill-current pointer-events-none place-self-center" viewBox="0 0 24 24">
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-        </path>
-      </svg>
+            <ul class="line-clamp-4">
+              <li v-for="quantity in result.quantities">
+                {{ quantity }}
+              </li>
+            </ul>
 
-      <input type="text" id="search" placeholder="Search for a recipe, ingredients, or instructions…"
-        class="input input-bordered w-full max-w-lg rounded-full pl-12" v-model="search" />
-    </div>
-
-    <div class="flex flex-wrap flex-row gap-3 justify-center" v-if="results.length">
-      <div class="card w-96 bg-base-200 hover:shadow-xl card-bordered transition-all duration-300 cursor-pointer"
-        @click="openRecipe(result)" v-for="result in results">
-        <div class="card-body prose">
-          <h2 class="card-title">
-            {{ result.title }}
-          </h2>
-
-          <ul class="line-clamp-4">
-            <li v-for="quantity in result.quantities">
-              {{ quantity }}
-            </li>
-          </ul>
-
-          <div class="card-actions gap-1">
-            <div v-for="ingredient in result.ingredients" class="badge badge-outline" :style="{
-              color: toColour(ingredient)
-            }">
-              {{ ingredient }}</div>
+            <div class="card-actions gap-1">
+              <div v-for="ingredient in result.ingredients" class="badge badge-outline" :style="{
+                color: toColour(ingredient)
+              }">
+                {{ ingredient }}</div>
+            </div>
           </div>
         </div>
       </div>
+      <div v-else class="w-full grid justify-center place-items-center">
+        No recipes found. 😢
+      </div>
     </div>
-    <div v-else class="w-full grid justify-center place-items-center">
-      No recipes found. 😢
-    </div>
-  </div>
+  </client-only>
 </template>
