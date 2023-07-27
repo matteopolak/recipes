@@ -101,7 +101,7 @@ function openRecipe(recipe: Recipe) {
       </form>
     </dialog>
 
-    <div class="my-8 flex flex-col items-center gap-8">
+    <div class="my-8 px-4 flex flex-col items-center gap-8">
       <div class="grid relative w-full max-w-lg">
         <svg class="w-8 h-8 absolute left-3 fill-current pointer-events-none place-self-center" viewBox="0 0 24 24">
           <path
