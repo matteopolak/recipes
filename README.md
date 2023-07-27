@@ -1,63 +1,20 @@
-# Nuxt 3 Minimal Starter
+# Recipe Index
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This project is a full-text searchable index of the [RecipeNLG dataset](https://recipenlg.cs.put.poznan.pl) of over 2 million recipes.
 
-## Setup
+## Technology
 
-Make sure to install the dependencies:
+- Vue
+  - Frontend framework
+- Nuxt
+  - Server-side rendering
+- DaisyUI
+  - Styled components
+- TailwindCSS
+  - CSS framework
+- Meilisearch
+  - Full-text search engine
 
-```bash
-# npm
-npm install
+## About
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Check it out at [recipes.matteopolak.com](https://recipes.matteopolak.com).
